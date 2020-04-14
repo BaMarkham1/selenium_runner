@@ -130,6 +130,7 @@ def getAdvStats(browser, teamList, firstYear, lastYear):
     mainRecTable = pd.DataFrame()
     #for each team in the team list
     for team in teamList:
+        print(team)
         #for each year we need stats from
         for year in range(firstYear, lastYear+1):
             #get a table for the team and year combo we need
@@ -148,6 +149,7 @@ def getAdvStats(browser, teamList, firstYear, lastYear):
 #main
 #set what years to grab here
 #note: these stats only go back to 2018
+print("calling top function")
 rushTable, recTable = getAdvStats(driver, teamList, 2018, 2019)
 print(rushTable)
 print(recTable)
