@@ -15,3 +15,4 @@ for index, table in enumerate(tables):
     print("Index:", str(index))
     for col in list(table.columns):
         print(col)
+    print(table)
