@@ -1,6 +1,6 @@
 from selenium import webdriver
 import os
-import pandas
+import pandas as pd
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
