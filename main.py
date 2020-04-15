@@ -10,14 +10,14 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
-driver.get("https://www.pro-football-reference.com/years/2019/rushing_advanced.htm")
-tables = pd.read_html(driver.page_source)
-print("num of tables:", str(len(tables)))
-for index, table in enumerate(tables):
-    print("Index:", str(index))
-    for col in list(table.columns):
-        print(col)
-    print(table)
+#driver.get("https://www.pro-football-reference.com/years/2019/rushing_advanced.htm")
+#tables = pd.read_html(driver.page_source)
+#print("num of tables:", str(len(tables)))
+#for index, table in enumerate(tables):
+    #print("Index:", str(index))
+    #for col in list(table.columns):
+        #print(col)
+    #print(table)
 
 #this is caled by getAdvRushStats()
 #this is called for every combination of team and year that we need to search for
@@ -72,7 +72,7 @@ def getAdvStats(browser, category, year):
     #print(browser.page_source)
     #get the tables on the page
     tables = pd.read_html(browser.page_source)
-    print(len(tables))
+    #print(len(tables))
     if category == "receiving":
         table = tables[1]
     else:
@@ -91,12 +91,14 @@ def getAdvStats(browser, category, year):
     table = formatTable(webPage, table, year)
     return table
 
-#print("getting receiving stats")
-#rec_table = getAdvStats(driver, "receiving", 2019)
-#print("getting rushing stats")
-#rush_table = getAdvStats(driver, "rushing", 2019)
+print("getting receiving stats")
+rec_table = getAdvStats(driver, "receiving", 2019)
+print("getting rushing stats")
+rush_table = getAdvStats(driver, "rushing", 2019)
 
 
-#print(rush_table)
-#print(rec_table)
-#driver.close()
+print(rush_table)
+print(rec_table)
+driver.close()
+
+exit(0)
