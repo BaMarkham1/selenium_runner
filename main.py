@@ -99,4 +99,4 @@ rec_table = getAdvStats(driver, "receiving", 2019)
 
 #print(rush_table)
 print(rec_table)
-driver.close()
+#driver.close()
