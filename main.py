@@ -69,6 +69,7 @@ def getAdvStats(browser, category, year):
     url = "https://www.pro-football-reference.com/years/" + str(year) + "/" + category + "_advanced.htm"
     #load the page
     browser.get(url)
+    print(browser.page_source)
     #get the tables on the page
     table = pd.read_html(browser.page_source)[0]
     print(table.columns)
@@ -86,8 +87,8 @@ def getAdvStats(browser, category, year):
 
 print("getting receiving stats")
 rec_table = getAdvStats(driver, "receiving", 2019)
-print("getting rushing stats")
-rush_table = getAdvStats(driver, "rushing", 2019)
+#print("getting rushing stats")
+#rush_table = getAdvStats(driver, "rushing", 2019)
 
 
 print(rush_table)
