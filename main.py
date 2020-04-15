@@ -10,14 +10,14 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
-#driver.get("https://www.pro-football-reference.com/years/2019/rushing_advanced.htm")
-#tables = pd.read_html(driver.page_source)
-#print("num of tables:", str(len(tables)))
-#for index, table in enumerate(tables):
-#    print("Index:", str(index))
-#    for col in list(table.columns):
-#        print(col)
-#    print(table)
+driver.get("https://www.pro-football-reference.com/years/2019/rushing_advanced.htm")
+tables = pd.read_html(driver.page_source)
+print("num of tables:", str(len(tables)))
+for index, table in enumerate(tables):
+    print("Index:", str(index))
+    for col in list(table.columns):
+        print(col)
+    print(table)
 
 #this is caled by getAdvRushStats()
 #this is called for every combination of team and year that we need to search for
@@ -82,7 +82,7 @@ def getAdvStats(browser, category, year):
         table = fix_column_names(table)
     #get table we need for rushing and trim down the columns
     webPage = browser.find_element_by_id("advanced_" + category)
-    print(webPage.get_attribute("innerHTML"))
+    #print(webPage.get_attribute("innerHTML"))
     category_dict = {"rushing" : ["Player", "YAC", "BrkTkl"], "receiving" : ["Player", "YBC" , "YAC", "BrkTkl"]}
     #print(table.columns)
     table = table[category_dict[category]].copy()
@@ -91,12 +91,12 @@ def getAdvStats(browser, category, year):
     table = formatTable(webPage, table, year)
     return table
 
-print("getting receiving stats")
-rec_table = getAdvStats(driver, "receiving", 2019)
+#print("getting receiving stats")
+#rec_table = getAdvStats(driver, "receiving", 2019)
 #print("getting rushing stats")
 #rush_table = getAdvStats(driver, "rushing", 2019)
 
 
 #print(rush_table)
-print(rec_table)
+#print(rec_table)
 #driver.close()
