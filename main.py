@@ -71,12 +71,13 @@ def getAdvStats(browser, category, year):
     browser.get(url)
     #get the tables on the page
     table = pd.read_html(browser.page_source)[0]
+    print(table.columns)
     if category == "rushing":
         table = fix_column_names(table)
     #get table we need for rushing and trim down the columns
     webPage = browser.find_element_by_id("advanced_" + category)
     category_dict = {"rushing" : ["Player", "YAC", "BrkTkl"], "receiving" : ["Player", "YBC" , "YAC", "BrkTkl"]}
-    print(table.columns)
+    #print(table.columns)
     table = table[category_dict[category]].copy()
     category_dict2 = {"rushing" : ["Player", "Yards After Contact", "Rush BrkTkl"], "receiving" : ["Player", "Yards Before Catch" , "Yards After Catch", "Rec BrkTkl"]}
     table.columns = category_dict2[category]
