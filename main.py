@@ -76,13 +76,16 @@ def getAdvStats(browser, category, year):
     #get table we need for rushing and trim down the columns
     webPage = browser.find_element_by_id("advanced_" + category)
     category_dict = {"rushing" : ["Player", "YAC", "BrkTkl"], "receiving" : ["Player", "YBC" , "YAC", "BrkTkl"]}
+    print(table.columns)
     table = table[category_dict[category]].copy()
     category_dict2 = {"rushing" : ["Player", "Yards After Contact", "Rush BrkTkl"], "receiving" : ["Player", "Yards Before Catch" , "Yards After Catch", "Rec BrkTkl"]}
     table.columns = category_dict2[category]
     table = formatTable(webPage, table, year)
     return table
 
+print("getting rushing stats")
 rush_table = getAdvStats(driver, "rushing", 2019)
+print("getting receiving stats")
 rec_table = getAdvStats(driver, "receiving", 2019)
 
 print(rush_table)
