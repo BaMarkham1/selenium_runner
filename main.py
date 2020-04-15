@@ -84,10 +84,11 @@ def getAdvStats(browser, category, year):
     table = formatTable(webPage, table, year)
     return table
 
-print("getting rushing stats")
-rush_table = getAdvStats(driver, "rushing", 2019)
 print("getting receiving stats")
 rec_table = getAdvStats(driver, "receiving", 2019)
+print("getting rushing stats")
+rush_table = getAdvStats(driver, "rushing", 2019)
+
 
 print(rush_table)
 print(rec_table)
