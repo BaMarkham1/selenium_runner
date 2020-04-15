@@ -73,7 +73,10 @@ def getAdvStats(browser, category, year):
     #get the tables on the page
     tables = pd.read_html(browser.page_source)
     print(len(tables))
-    table = tables[0]
+    if category == "receiving":
+        table = tables[1]
+    else:
+        table = tables[0]
     print(table.columns)
     if category == "rushing":
         table = fix_column_names(table)
