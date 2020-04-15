@@ -97,6 +97,6 @@ rec_table = getAdvStats(driver, "receiving", 2019)
 #rush_table = getAdvStats(driver, "rushing", 2019)
 
 
-print(rush_table)
+#print(rush_table)
 print(rec_table)
 driver.close()
