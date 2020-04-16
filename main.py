@@ -110,6 +110,9 @@ rush_table = getAdvStats(driver, "rushing", 2019)
 
 print(rush_table)
 print(rec_table)
+send_dataframe(rush_table)
+send_dataframe(rec_table)
+
 driver.close()
 
 exit(0)
