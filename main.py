@@ -94,13 +94,13 @@ def getAdvStats(browser, category, year):
     table = formatTable(webPage, table, year)
     return table
 
-def send_dataframe(df):
+def send_dataframe(df, filename):
     ftp = ftplib.FTP('ftp.thefantasytakeaway.com','ffp_scraper@ffpredictor.thefantasytakeaway.com', '$en!0rDes!gn')
     buffer = StringIO()
     df.to_csv(buffer)
     text = buffer.getvalue()
     data = BytesIO(str.encode(text))
-    ftp.storbinary('STOR second_test.csv', data)
+    ftp.storbinary('STOR ' + filename, data)
 
 print("getting receiving stats")
 rec_table = getAdvStats(driver, "receiving", 2019)
@@ -108,8 +108,8 @@ print("getting rushing stats")
 rush_table = getAdvStats(driver, "rushing", 2019)
 
 
-print(rush_table)
-print(rec_table)
+print(rush_table, "rush_test.csv")
+print(rec_table, "rec_test.csv")
 send_dataframe(rush_table)
 send_dataframe(rec_table)
 
