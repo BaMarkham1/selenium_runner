@@ -108,10 +108,10 @@ print("getting rushing stats")
 rush_table = getAdvStats(driver, "rushing", 2019)
 
 
-print(rush_table, "rush_test.csv")
-print(rec_table, "rec_test.csv")
-send_dataframe(rush_table)
-send_dataframe(rec_table)
+print(rush_table)
+print(rec_table)
+send_dataframe(rush_table, "rush_test.csv")
+send_dataframe(rec_table, "rec_test.csv")
 
 driver.close()
 
