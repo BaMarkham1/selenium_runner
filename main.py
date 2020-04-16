@@ -100,7 +100,7 @@ def send_dataframe(df, filename):
     df.to_csv(buffer)
     text = buffer.getvalue()
     data = BytesIO(str.encode(text))
-    ftp.storbinary('STOR ' + filename, data)
+    ftp.storbinary('STOR second_test.csv', data)
 
 print("getting receiving stats")
 rec_table = getAdvStats(driver, "receiving", 2019)
