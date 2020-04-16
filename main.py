@@ -2,6 +2,9 @@ from selenium import webdriver
 import os
 import pandas as pd
 from bs4 import BeautifulSoup, SoupStrainer
+import ftplib
+from io import StringIO
+from io import BytesIO
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -90,6 +93,14 @@ def getAdvStats(browser, category, year):
     table.columns = category_dict2[category]
     table = formatTable(webPage, table, year)
     return table
+
+def send_dataframe(df):
+    ftp = ftplib.FTP('ftp.thefantasytakeaway.com','ffp_scraper@ffpredictor.thefantasytakeaway.com', '$en!0rDes!gn')
+    buffer = StringIO()
+    df.to_csv(buffer)
+    text = buffer.getvalue()
+    data = BytesIO(str.encode(text))
+    ftp.storbinary('STOR second_test.csv', data)
 
 print("getting receiving stats")
 rec_table = getAdvStats(driver, "receiving", 2019)
